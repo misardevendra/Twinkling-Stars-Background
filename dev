@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Realistic Space Animation with Twinkling Stars</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: black;
+    }
+
+    .star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background-color: white;
+      opacity: 0;
+      border-radius: 50%;
+      animation: flicker linear infinite, drift linear infinite;
+    }
+
+    @keyframes flicker {
+      0%, 100% {
+        opacity: 0;
+      }
+      25%, 75% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes drift {
+      0% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(1px, 1px);
+      }
+      100% {
+        transform: translate(0, 0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const numStars = 100;
+    const colors = ['#ffffff', '#ffcc00', '#ff9900', '#ff6600']; // Star colors
+    const body = document.body;
+
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      body.appendChild(star);
+
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+      const size = Math.random() * 3 + 1;
+
+      star.style.backgroundColor = color;
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+      star.style.left = x + 'px';
+      star.style.top = y + 'px';
+
+      const animationDuration = Math.random() * 2 + 1;
+      star.style.animationDuration = animationDuration + 's';
+    }
+  </script>
+</body>
+</html>
